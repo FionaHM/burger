@@ -3,6 +3,7 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var PORT = process.env.PORT || 8080;
 var app = express();
+var router = require('./controllers/burgers_controller.js');
 // var burger = require('./models/burger.js');
 
 // parse various different custom JSON types as JSON 
@@ -17,6 +18,8 @@ var urlencodedParser = bodyParser.urlencoded({ extended: true });
 
 // parse an HTML body into a string 
 app.use(bodyParser.text({ type: 'text/html' }));
+
+router(app);
 
 // burger.burgers();
 
