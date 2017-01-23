@@ -1,5 +1,58 @@
-<ul>
-	{{#each burgers}}	
-		<li> {{burger_name}} - {{devoured}}</li>
-	{{/each}}
-</ul>
+<div class="container">
+ 	<div class="jumbotron text-center">
+		<h1>Burger Bar</h1>
+		<hr>
+	</div>
+	<div class="row">
+		<div class="col-md-3">
+		</div>
+		<div class="col-md-6 text-center">
+			<img src="./assets/img/burger.png">
+		</div>
+		<div class="col-md-3">
+		</div>
+	</div>
+<!-- end of header -->
+<!-- display burgers -->
+	<div class="row">
+		<div class="col-md-6">
+			<ul>
+			  {{#each burgers}}
+			    <li>
+			      <p>
+			        {{this.id}} | {{this.burger_name}}
+			        <form action="/update/{{this.id}}?_method=PUT" method="POST">
+			          <button class="btn btn-warning submit"  id="devour" type="submit">Devour it!</button>
+			        </form>
+			      </p>
+			    </li>
+			  {{/each}}
+			</ul>
+		</div>
+		<div class="col-md-6">
+			{{#each devoured}}
+			    <li>
+			      <p>
+			        {{this.id}} | {{this.burger_name}}
+			      </p>
+			    </li>
+			  {{/each}}
+			
+		</div>
+	</div>
+	<!-- end of display burgers -->
+	<!-- add new burger -->
+	<div class="row text-center">
+		<div class="col-md-4"></div>
+		<div class="col-md-4">
+			<h2 class="text-center">Add a Burger</h2>
+			<form method="POST" action="/add" id="submit-form" class="text-center">
+				<input id="burger-input" type="text" name="burgername" maxlength="32"></textarea>
+				<button class="btn btn-info" type="submit">Add Burger</button><br>
+			</form>
+		</div>
+		<div class="col-md-4"></div>
+	</div>
+	<!-- end of add new burger -->
+</div>  <!-- end of container	-->
+

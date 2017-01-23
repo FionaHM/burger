@@ -9,5 +9,23 @@ module.exports = {
 				reject(err);
 			})
 		})
+	},
+	burgerAddOne:  function(burgerName){
+		return new Promise(function(resolve, reject){
+			db.insertOne(burgerName).then(function(response){
+				resolve(response);
+			}).catch(function(err){
+				reject(err);
+			})
+		})
+	},
+	burgerUpdateOne:  function(burgerId){
+		return new Promise(function(resolve, reject){
+			db.updateOne(burgerId).then(function(response){
+				resolve(response);
+			}).catch(function(err){
+				reject(err);
+			})
+		})
 	}
 }

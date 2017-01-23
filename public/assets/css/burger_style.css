@@ -1,0 +1,14 @@
+.submit {
+	margin: 10px auto;
+	display: block;
+}
+#devour {
+	margin: 10px auto;
+	display: inline-block;
+}
+#submit-form {
+	min-height: 100px;    
+}
+#burger-input {
+	width: 300px;
+}

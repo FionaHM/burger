@@ -6,15 +6,16 @@ var app = express();
 var router = require('./controllers/burgers_controller.js');
 // var burger = require('./models/burger.js');
 
-// parse various different custom JSON types as JSON 
-app.use(bodyParser.json({ type: 'application/*+json' }));
-// // parse some custom thing into a Buffer 
-// app.use(bodyParser.raw({ type: 'application/vnd.custom-type' }))
-// create application/json parser 
-var jsonParser = bodyParser.json();
+// Serve static content for the app from the "public" directory in the application directory.
+// this goes before any body-parser calls - static files dont need parsing.
+app.use(express.static(__dirname + "/public"));
+
+// parse application/x-www-form-urlencoded 
+// found urlencoded extended must be true for nested arrays and for post method
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.text());
+app.use(bodyParser.json({ type: "application/vnd.api+json" }));
  
-// create application/x-www-form-urlencoded parser 
-var urlencodedParser = bodyParser.urlencoded({ extended: true });
 
 // parse an HTML body into a string 
 app.use(bodyParser.text({ type: 'text/html' }));
