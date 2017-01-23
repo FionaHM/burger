@@ -41,6 +41,21 @@ function router(app){
 		res.redirect("/");	
 	})
 
+	app.delete("/delete/:id", function (req, res) {
+		var burgerId = req.params.id;
+		console.log(burgerId);
+		burger.burgerRemoveOne(burgerId).then(function(response){
+			// console.log(response);
+			// res.render('index', { burgers: response });
+		}).catch(function(err){
+			reject(err);
+		})
+		// reloads homepage
+		res.redirect("/");	
+	})
+
+	
+
 
 
 	app.use(function(req, res){

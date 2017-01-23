@@ -15,40 +15,47 @@
 <!-- end of header -->
 <!-- display burgers -->
 	<div class="row">
-		<div class="col-md-6">
-			<ul>
-			  {{#each burgers}}
-			    <li>
-			      <p>
-			        {{this.id}} | {{this.burger_name}}
-			        <form action="/update/{{this.id}}?_method=PUT" method="POST">
-			          <button class="btn btn-warning submit"  id="devour" type="submit">Devour it!</button>
-			        </form>
-			      </p>
-			    </li>
-			  {{/each}}
-			</ul>
+		<div class="col-xs-12 col-md-6">
+			<div class="col-xs-4 col-md-2"></div>
+			<div class="col-xs-8 col-md-10 center-items">
+				<h2>Burgers Available!</h2>
+				<ul>
+				  	{{#each burgers}}
+					    <li>
+				       		<form action="/update/{{this.id}}?_method=PUT" method="POST">
+			       				<p>{{this.id}} | {{this.burger_name}}</p>
+				        		<button class="btn btn-warning submit"  id="devour" type="submit">Devour it!</button>
+				        	</form>
+					    </li>
+					{{/each}}
+				</ul>
+			</div>
 		</div>
-		<div class="col-md-6">
-			{{#each devoured}}
-			    <li>
-			      <p>
-			        {{this.id}} | {{this.burger_name}}
-			      </p>
-			    </li>
-			  {{/each}}
-			
+		<div class="col-xs-12 col-md-6">
+			<div class="col-xs-4 col-md-2"></div>
+			<div class="col-xs-8 col-md-10 center-items">
+			<h2>Burgers Devoured!</h2>
+				{{#each devoured}}
+				    <li>
+				        <form action="/delete/{{this.id}}?_method=DELETE" method="POST">
+			       			<p>{{this.id}} | {{this.burger_name}}</p>
+			        		<button class="btn btn-danger submit"  id="remove" type="submit">Remove Burger</button>
+				        </form>
+				    </li>
+				{{/each}}
+			</div>
 		</div>
 	</div>
 	<!-- end of display burgers -->
 	<!-- add new burger -->
 	<div class="row text-center">
 		<div class="col-md-4"></div>
-		<div class="col-md-4">
+		<div class="col-md-4">		
 			<h2 class="text-center">Add a Burger</h2>
+			<p>Please add a burger of your choice!</p>
 			<form method="POST" action="/add" id="submit-form" class="text-center">
 				<input id="burger-input" type="text" name="burgername" maxlength="32"></textarea>
-				<button class="btn btn-info" type="submit">Add Burger</button><br>
+				<button class="btn btn-info" type="submit" id="submit-button">Add Burger</button><br>
 			</form>
 		</div>
 		<div class="col-md-4"></div>

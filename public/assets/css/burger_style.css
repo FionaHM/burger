@@ -1,6 +1,24 @@
+ul {
+	margin: auto;
+}
+h2 {
+	margin: auto;
+}
+p {
+	margin: 0 0 10px;
+    display: inline;
+  
+}
+
+.center-items{
+	margin:auto;
+}
 .submit {
 	margin: 10px auto;
 	display: block;
+}
+.row {
+	margin: auto;
 }
 #devour {
 	margin: 10px auto;
@@ -8,6 +26,9 @@
 }
 #submit-form {
 	min-height: 100px;    
+}
+#submit-button {
+	margin-top: 10px;    
 }
 #burger-input {
 	width: 300px;

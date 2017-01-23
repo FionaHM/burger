@@ -38,12 +38,14 @@ module.exports = {
 					resolve();
 				});
 			});
+		},
+		deleteOne: function(burgerId){
+			return new Promise(function(resolve, reject){
+				connection.query('DELETE from burgers_db.burgers where id = ?', [burgerId], function(err, rows, fields) {
+				  	if (err) reject(err);
+					resolve();
+				});
+			});
 		}
-	}
+}
 
-
-
-
-// selectAll()
-//selectOne()
-// updateOne

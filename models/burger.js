@@ -27,5 +27,14 @@ module.exports = {
 				reject(err);
 			})
 		})
+	},	
+	burgerRemoveOne:  function(burgerId){
+		return new Promise(function(resolve, reject){
+			db.deleteOne(burgerId).then(function(response){
+				resolve(response);
+			}).catch(function(err){
+				reject(err);
+			})
+		})
 	}
 }
