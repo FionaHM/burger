@@ -19,8 +19,7 @@ function router(app){
 	app.post("/add", function (req, res) {
 		var burgerName = req.body.burgername;
 		burger.burgerAddOne(burgerName).then(function(response){
-			// console.log(response);
-			// res.render('index', { burgers: response });
+
 		}).catch(function(err){
 			reject(err);
 		})
@@ -43,7 +42,7 @@ function router(app){
 
 	app.delete("/delete/:id", function (req, res) {
 		var burgerId = req.params.id;
-		console.log(burgerId);
+
 		burger.burgerRemoveOne(burgerId).then(function(response){
 			// console.log(response);
 			// res.render('index', { burgers: response });
@@ -54,15 +53,11 @@ function router(app){
 		res.redirect("/");	
 	})
 
-	
-
 
 
 	app.use(function(req, res){
-		// var rows = ;
 		burger.burgers().then(function(response){
-			// console.log(response);
-			res.render('index', { burgers: response[0], devoured: response[1]  });
+			res.render('index', { burgers: response[0], noBurgers: response[1], devoured: response[2], noDevoured: response[3]  });
 		}).catch(function(err){
 			reject(err);
 		})	

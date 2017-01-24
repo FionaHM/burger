@@ -17,7 +17,16 @@ module.exports = {
 						}
 					}
 					// send back the array 
-					resolve([burgerArr,devouredArr]);
+					var noBurgers = false;
+					if (burgerArr.length === 0){
+						noBurgers = true;
+					}
+
+					var noDevouredBurgers = false;
+					if (devouredArr.length === 0){
+						noDevouredBurgers = true;
+					}
+					resolve([burgerArr, noBurgers, devouredArr, noDevouredBurgers]);
 				});
 
 			});

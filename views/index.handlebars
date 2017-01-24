@@ -2,6 +2,7 @@
  	<div class="jumbotron text-center">
 		<h1>Burger Bar</h1>
 		<hr>
+		<p>Welcome! Please add any burger you wish to eat then devour it!</p>
 	</div>
 	<div class="row">
 		<div class="col-md-3">
@@ -16,33 +17,47 @@
 <!-- display burgers -->
 	<div class="row">
 		<div class="col-xs-12 col-md-6">
-			<div class="col-xs-4 col-md-2"></div>
-			<div class="col-xs-8 col-md-10 center-items">
-				<h2>Burgers Available!</h2>
-				<ul>
-				  	{{#each burgers}}
-					    <li>
-				       		<form action="/update/{{this.id}}?_method=PUT" method="POST">
-			       				<p>{{this.id}} | {{this.burger_name}}</p>
-				        		<button class="btn btn-warning submit"  id="devour" type="submit">Devour it!</button>
-				        	</form>
-					    </li>
-					{{/each}}
-				</ul>
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<h2 class="text-center">Burgers Available</h2>
+					<ul>
+						<!-- uses a flag passed from the controller to check if the list is empty -->
+						{{#if noBurgers }}
+							<p class="text-center">Sorry no burgers to devour!</p>
+						{{/if}}
+					  	{{#each burgers}}
+						    <li>
+						    	<!-- updating the devoured field so this is a put action -->
+					       		<form action="/update/{{this.id}}?_method=PUT" method="POST">
+				       				<p class="burger-list-items">{{this.id}} | {{this.burger_name}}</p>
+					        		<button class="btn btn-warning"  id="devour" type="submit">Devour it!</button>
+					        	</form>
+						    </li>
+						{{/each}}
+					</ul>
+				</div>
 			</div>
 		</div>
 		<div class="col-xs-12 col-md-6">
-			<div class="col-xs-4 col-md-2"></div>
-			<div class="col-xs-8 col-md-10 center-items">
-			<h2>Burgers Devoured!</h2>
-				{{#each devoured}}
-				    <li>
-				        <form action="/delete/{{this.id}}?_method=DELETE" method="POST">
-			       			<p>{{this.id}} | {{this.burger_name}}</p>
-			        		<button class="btn btn-danger submit"  id="remove" type="submit">Remove Burger</button>
-				        </form>
-				    </li>
-				{{/each}}
+			<div class="panel panel-devoured">
+				<div class="panel-body">
+					<h2 class="text-center">Burgers Devoured</h2>
+					<ul>		
+						<!-- uses a flag passed from the controller to check if the list is empty -->
+						{{#if noDevoured }}
+							<p class="center">No burgers have been devoured!</p>
+						{{/if}}
+						{{#each devoured}}
+						    <li>
+						    	<!-- removing from database so this is a delete action -->
+						        <form action="/delete/{{this.id}}?_method=DELETE" method="POST">
+					       			<p class="burger-list-items">{{this.id}} | {{this.burger_name}}</p>
+					        		<button class="btn btn-danger"  id="delete" type="submit">Remove</button>
+						        </form>
+						    </li>
+						{{/each}}
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>
