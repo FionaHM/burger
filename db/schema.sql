@@ -2,7 +2,7 @@ CREATE database burgers_db;
 
 use burgers_db;
 
-CREATE table burgers (
+CREATE table burgers_db.burgers (
 id int auto_increment,
 burger_name VARCHAR(32) not null,
 devoured BOOLEAN DEFAULT FALSE,
