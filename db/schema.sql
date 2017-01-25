@@ -1,12 +1,14 @@
 CREATE database burgers_db;
 
+drop table burgers;
 use burgers_db;
 
-CREATE table burgers_db.burgers (
-id int auto_increment,
+CREATE table burgers (
+id int auto_increment not null,
 burger_name VARCHAR(32) not null,
 devoured BOOLEAN DEFAULT FALSE,
-date_timestamp TIMESTAMP not null,
-primary key(id));
+date_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP not null,
+createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+PRIMARY KEY(id));
 
-select * from burgers_db.burgers;
+select * from burgers;

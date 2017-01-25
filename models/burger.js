@@ -7,7 +7,7 @@ module.exports = {
 	// returns all the burgers
 	burgers:  function(){
 		return new Promise(function(resolve, reject){
-			orm.selectAll('*', 'burgers_db.burgers', 'date_timestamp').then(function(rows){
+			orm.selectAll('*', 'burgers', 'date_timestamp').then(function(rows){
 				// created 2 arrays to separate the devoured and non-devoured elements
 				var burgerArr = [];
 				var devouredArr = [];
@@ -42,7 +42,7 @@ module.exports = {
 	// adds one burger by calling the function insertOne
 	burgerAddOne:  function(burgerId){
 		return new Promise(function(resolve, reject){
-			orm.insertOne('burgers_db.burgers','burger_name', burgerId).then(function(response){
+			orm.insertOne('burgers','burger_name', burgerId).then(function(response){
 				resolve(response);
 			}).catch(function(err){
 				reject(err);
@@ -52,7 +52,7 @@ module.exports = {
 	// updates one burger by calling the function updateOne
 	burgerUpdateOne:  function(burgerId){
 		return new Promise(function(resolve, reject){
-			orm.updateOne('burgers_db.burgers', 'devoured', 'id', burgerId).then(function(response){
+			orm.updateOne('burgers', 'devoured', 'id', burgerId).then(function(response){
 				resolve();
 			}).catch(function(err){
 				reject(err);
@@ -62,7 +62,7 @@ module.exports = {
 	// removes one burger by calling the function deleteOne
 	burgerRemoveOne:  function(burgerId){
 		return new Promise(function(resolve, reject){
-			orm.deleteOne('burgers_db.burgers', 'id', burgerId).then(function(response){
+			orm.deleteOne('burgers', 'id', burgerId).then(function(response){
 				resolve();
 			}).catch(function(err){
 				reject(err);
