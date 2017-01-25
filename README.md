@@ -43,7 +43,7 @@ The path "/delete/:id" is routed to a delete method in this controller file. Thi
 
 
 * USE:
-A use request is set to that any url that does not have a pre-specified route will result in the home page being served.  The homepage is populated with the burger data from the database by calling a function in the data model burger.burgers().  The results of this call are redendered to the page a used in the index.handlebars view.
+A use request is set to that any url that does not have a pre-specified route will result in the home page being served.  The homepage is populated with the burger data from the database by calling a function in the data model burger.burgers().  The results of this call are redendered to the page used in the index.handlebars view.
 
 
 ##   Data: 
