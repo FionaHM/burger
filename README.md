@@ -4,7 +4,7 @@ https://github.com/FionaHM/burger
 
 ## About this application
 
-This application allows a user to enter the name of a burger and then devour it. The user can also delete a devoured burger.
+This application allows a user to enter the name of a burger and then devour it. The user can also delete a devoured burger.  Please not that the total number of displayed burgers is limited to 10. Burgers are added to the devoured and burgers list with the newest on top.  The burger ids will not therefore be sequesential as the list is based on timestamp desc.
 
 ## Usage
 The application is started on the commandline as follows:
