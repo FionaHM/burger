@@ -33,17 +33,17 @@ This is the server side process. It is a node application, specifically express.
 This contains routing information for incoming url.
 
 * POST requests are routed as follows: 
-The path "/add" is routed to a post method in this controller file. This the calls on the data model to update the database - this is done in the line burger.burgerAddOne(burgerName).
+The path "/" is routed to a post method in this controller file. This the calls on the data model to update the database - this is done in the line burger.burgerAddOne(burgerName).
 	
 * PUT requests are routed as follows:
-The path "/update/:id" is routed to a put method in this controller file. This the calls on the data model to update the database - this is done in the line burger.burgerUpdateOne(burgerId).  The id of the item to be updated is captured from the url as a parameter.
+The path "/:id" is routed to a put method in this controller file. This the calls on the data model to update the database - this is done in the line burger.burgerUpdateOne(burgerId).  The id of the item to be updated is captured from the url as a parameter.
 
 * DELETE requests are routed as follows:
-The path "/delete/:id" is routed to a delete method in this controller file. This the calls on the data model to delete an item from the database - this is done in the line burger.burgerRemoveOne(burgerId).  The id of the item to be deleted is captured from the url as a parameter.
+The path "/:id" is routed to a delete method in this controller file. This the calls on the data model to delete an item from the database - this is done in the line burger.burgerRemoveOne(burgerId).  The id of the item to be deleted is captured from the url as a parameter.
 
 
-* USE:
-A use request is set to that any url that does not have a pre-specified route will result in the home page being served.  The homepage is populated with the burger data from the database by calling a function in the data model burger.burgers().  The results of this call are redendered to the page used in the index.handlebars view.
+* GET:
+A get request is set to serve the base url '/'.  The homepage is populated with the burger data from the database by calling a function in the data model burger.burgers().  The results of this call are redendered to the page used in the index.handlebars view.
 
 
 ##   Data: 

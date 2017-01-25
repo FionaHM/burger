@@ -1,4 +1,4 @@
-var db = require('../config/orm.js');
+var orm = require('../config/orm.js');
 
 // this module calls the module, db above,that runs the database queries
 // it passes the response back to the controller module - because this module was called
@@ -7,17 +7,42 @@ module.exports = {
 	// returns all the burgers
 	burgers:  function(){
 		return new Promise(function(resolve, reject){
-			db.selectAll().then(function(response){
-				resolve(response);
+			orm.selectAll('*', 'burgers_db.burgers', 'date_timestamp').then(function(rows){
+				// created 2 arrays to separate the devoured and non-devoured elements
+				var burgerArr = [];
+				var devouredArr = [];
+				// store this data in the appropriate array 
+				// determine
+				for (var i = 0; i < rows.length; i++){
+					if (rows[i].devoured === 0){
+						burgerArr.push(rows[i]);
+					} else {
+						devouredArr.push(rows[i])
+					}
+				}
+				// create 2 booleans to let the client know if no data available
+				// one for the burgers list
+				var noBurgers = false;
+				if (burgerArr.length === 0){
+					noBurgers = true;
+				}
+				// one for the devoured list
+				var noDevouredBurgers = false;
+				if (devouredArr.length === 0){
+					noDevouredBurgers = true;
+				}
+				// send back both booleans and both arrays
+				resolve([burgerArr, noBurgers, devouredArr, noDevouredBurgers]);
+
 			}).catch(function(err){
 				reject(err);
 			})
 		})
 	},
 	// adds one burger by calling the function insertOne
-	burgerAddOne:  function(burgerName){
+	burgerAddOne:  function(burgerId){
 		return new Promise(function(resolve, reject){
-			db.insertOne(burgerName).then(function(response){
+			orm.insertOne('burgers_db.burgers','burger_name', burgerId).then(function(response){
 				resolve(response);
 			}).catch(function(err){
 				reject(err);
@@ -27,8 +52,8 @@ module.exports = {
 	// updates one burger by calling the function updateOne
 	burgerUpdateOne:  function(burgerId){
 		return new Promise(function(resolve, reject){
-			db.updateOne(burgerId).then(function(response){
-				resolve(response);
+			orm.updateOne('burgers_db.burgers', 'devoured', 'id', burgerId).then(function(response){
+				resolve();
 			}).catch(function(err){
 				reject(err);
 			})
@@ -37,8 +62,8 @@ module.exports = {
 	// removes one burger by calling the function deleteOne
 	burgerRemoveOne:  function(burgerId){
 		return new Promise(function(resolve, reject){
-			db.deleteOne(burgerId).then(function(response){
-				resolve(response);
+			orm.deleteOne('burgers_db.burgers', 'id', burgerId).then(function(response){
+				resolve();
 			}).catch(function(err){
 				reject(err);
 			})

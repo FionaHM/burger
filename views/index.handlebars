@@ -28,8 +28,8 @@
 					  	{{#each burgers}}
 						    <li>
 						    	<!-- updating the devoured field so this is a put action -->
-					       		<form action="/update/{{this.id}}?_method=PUT" method="POST">
-				       				<p class="burger-list-items">{{this.id}} | {{this.burger_name}}</p>
+					       		<form action="/{{this.id}}?_method=PUT" method="POST">
+				       				<p class="burger-list-items"><strong># {{this.id}}</strong>  | {{this.burger_name}}</p>
 					        		<button class="btn btn-warning"  id="devour" type="submit">Devour it!</button>
 					        	</form>
 						    </li>
@@ -50,8 +50,8 @@
 						{{#each devoured}}
 						    <li>
 						    	<!-- removing from database so this is a delete action -->
-						        <form action="/delete/{{this.id}}?_method=DELETE" method="POST">
-					       			<p class="burger-list-items">{{this.id}} | {{this.burger_name}}</p>
+						        <form action="/{{this.id}}?_method=DELETE" method="POST">
+					       			<p class="burger-list-items"><strong># {{this.id}}</strong>  | {{this.burger_name}}</p>
 					        		<button class="btn btn-danger"  id="delete" type="submit">Remove</button>
 						        </form>
 						    </li>
@@ -68,7 +68,7 @@
 		<div class="col-md-4">		
 			<h2 class="text-center">Add a Burger</h2>
 			<p>Please add a burger of your choice!</p>
-			<form method="POST" action="/add" id="submit-form" class="text-center">
+			<form method="POST" action="/" id="submit-form" class="text-center">
 				<input id="burger-input" type="text" name="burgername" maxlength="32"></textarea>
 				<button class="btn btn-info" type="submit" id="submit-button">Add Burger</button><br>
 			</form>
